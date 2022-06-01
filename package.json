@@ -1,0 +1,31 @@
+{
+  "name": "prueba-tecnica-back",
+  "version": "1.0.0",
+  "description": "prueba backend engineer",
+  "main": "index.js",
+  "dependencies": {
+    "@prisma/client": "^3.14.0",
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1"
+  },
+  "devDependencies": {
+    "jest": "^28.1.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.16",
+    "prettier": "^2.6.2",
+    "prisma": "^3.14.0"
+  },
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "camiloaceve"
+  },
+  "author": "Camilo Acvedo",
+  "license": "ISC"
+}
