@@ -27,3 +27,13 @@ model Profile {
   userId    String   @unique
   createdAt DateTime @default(now())
 }
+
+model Book {
+  id        String  @id @default(uuid())
+  isbn      String
+  title     String
+  price     Int
+  active    Boolean @default(true)
+  editorial String
+  stock     Int
+}
