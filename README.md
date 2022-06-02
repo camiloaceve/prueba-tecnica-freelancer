@@ -4,7 +4,7 @@ el reto estuvo desarrollado con node js, manejo de jsonwebtoken para el inicio d
 
 Se debe clonar el repositorio e instalar las dependencias antes de correrlo de manera local.
 
-npm install
+###### npm install
 
 configure .env
 
