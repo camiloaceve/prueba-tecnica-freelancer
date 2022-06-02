@@ -8,6 +8,10 @@ Se debe clonar el repositorio e instalar las dependencias antes de correrlo de m
 
 configure .env
 
+Run migration database
+
+###### npx prisma migrate dev
+
 ## Run localhost:
 
 ###### npm run dev
@@ -37,11 +41,24 @@ http://localhost:4001/api/user/login
 "password":"12345678"
 }
 
+### Profile
+http://localhost:4001/api/user/update/profile/a96f5ff0-04f9-4bba-8283-a2624188f4fb
+
+Token
+
+#### Data
+{
+    "address":"avndad viva",
+    "userId":"af060e90-c9e7-440e-b8ee-eaf0eaaeb850"
+}
+
 ### Book
 
 #### Add
 
 http://localhost:4001/api/book/add
+
+Token
 
 ##### Data
 
@@ -56,6 +73,9 @@ http://localhost:4001/api/book/add
 #### Find All
 
 http://localhost:4001/api/book/find
+
+Token
+
 
 ##### Response
 
@@ -84,13 +104,14 @@ http://localhost:4001/api/book/find
 
 http://localhost:4001/api/book/update/676fa982-9889-4a11-9269-9a702289a300
 
+Token
+
 ##### Data
 
 {
 "isbn":"asda",
 "title":"El arte de la guerra",
 "price":12000,
-"active": false,
 "editorial":"no se",
 "stock":8
 }

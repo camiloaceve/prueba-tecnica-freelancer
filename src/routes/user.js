@@ -7,13 +7,13 @@ const {
   updateProfile
 } = require('../controller/userController')
 
-//const auth = require("../middlewares/auth")
+const auth = require("../middlewares/auth")
 
 const router = Router()
 
 router.post('/register', register)
 router.post('/login', sigIn)
-router.post('/profile', profile)
-router.put('/update/profile/:id', updateProfile)
+router.post('/profile', auth, profile)
+router.put('/update/profile/:id', auth,  updateProfile)
 
 module.exports = router

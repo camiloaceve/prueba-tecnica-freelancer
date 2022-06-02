@@ -7,10 +7,4 @@ exports.jwtToken = {
       expiresIn: '20m'
     })
   },
-  verifyToken(token) {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET, {
-      expiresIn: '20m'
-    })
-    return decoded
-  }
 }

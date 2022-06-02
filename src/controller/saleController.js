@@ -1,22 +1,21 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
-async function aumentarStocks(bookId, amount) {
+async function disminuirStocks(bookId, amount) {
   let { stock } = await prisma.book.findUnique({ id: bookId })
-  let nStock = parseInt(stock) + parseInt(amount)
+  let nStock = parseInt(stock) - parseInt(amount)
   const reg = await models.Articulo.findByIdAndUpdate(
     { id: bookId },
     { stock: nStock }
   )
 }
 
-async function addEntry(req, res, next) {
+async function addSale(req, res, next) {
   try {
-    const { dealer, bookId, amount } = req.body
+    const { dealer, bookId } = req.body
     const entry = await prisma.entry.create({
       data: {
         dealer: dealer,
-        amount: amount,
         book: {
           connect: {
             id: bookId
@@ -33,12 +32,12 @@ async function addEntry(req, res, next) {
   }
 }
 
-async function getEntries(req, res, next) {
+async function getSales(req, res, next) {
   try {
-    const entries = await prisma.entry.findMany({
+    const sales = await prisma.sale.findMany({
       where: { active: true }
     })
-    res.json(entries)
+    res.json(sales)
   } catch (error) {
     res.status(500).send({
       message: 'Ocurrio un error'
@@ -47,13 +46,13 @@ async function getEntries(req, res, next) {
   }
 }
 
-async function getEntry(req, res, next) {
+async function getSale(req, res, next) {
   try {
     const {id}=req.params
-    const entry = await prisma.entry.findFirst({
+    const sale = await prisma.sale.findFirst({
       where: {id}
     })
-    res.status(200).json(entry)
+    res.status(200).json(sale)
   } catch (error) {
     res.status(500).send({
       message: 'Ocurrio un error'
@@ -62,8 +61,9 @@ async function getEntry(req, res, next) {
   }
 }
 
+
 module.exports = {
-  addEntry,
-  getEntries,
-  getEntry
+  addSale,
+  getSales,
+  getSale
 }

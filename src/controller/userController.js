@@ -1,6 +1,10 @@
 const bcrypt = require('bcrypt')
 const { jwtToken } = require('../utils/jwt')
 
+// upload image
+const multer = require('multer')
+const sharp = require('sharp')
+
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
@@ -87,9 +91,11 @@ async function profile(req, res, next) {
 
 async function updateProfile(req, res, next) {
   try {
+    const { id } = req.params
+    await upload()
     const profile = await prisma.profile.update({
       where: { id },
-      data: { address: req.body.address }
+      data: { address: req.body.address, photo:req.body.photo }
     })
     res.json(profile)
   } catch (error) {
@@ -100,9 +106,26 @@ async function updateProfile(req, res, next) {
   }
 }
 
+//const a = require('../../uploads')
+
+async function upload(req, res, next) {
+  const storage = multer.diskStorage({
+    destination: (req, photo, cb) => {
+      cb(null, './uploads')
+    },
+    filename: (req, photo, cb) => {
+      const ext = photo.originalname.split('.').pop()
+      cb(null, `${Date.now()}.${ext}`)
+    }
+  })
+  const upload = multer({ storage})
+  upload.single('photo')
+}
+
 module.exports = {
   register,
   sigIn,
   profile,
-  updateProfile
+  updateProfile,
+  upload
 }

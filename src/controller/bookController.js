@@ -22,7 +22,7 @@ async function add(req, res, next) {
   }
 }
 
-async function getBook(req, res, next) {
+async function getBooks(req, res, next) {
   try {
     const books = await prisma.book.findMany({
       where: { active: true }
@@ -36,9 +36,24 @@ async function getBook(req, res, next) {
   }
 }
 
+async function getBook(req, res, next) {
+  try {
+    const {id}=req.params
+    const book = await prisma.book.findFirst({
+      where: {id}
+    })
+    res.status(200).json(book)
+  } catch (error) {
+    res.status(500).send({
+      message: 'Ocurrio un error'
+    })
+    next(error)
+  }
+}
+
 async function updateBook(req, res, next) {
   try {
-    const { isbn, title, price, editorial, stock, active } = req.body
+    const { isbn, title, price, editorial, stock } = req.body
     const { id } = req.params
     const book = await prisma.book.update({
       where: { id },
@@ -46,7 +61,6 @@ async function updateBook(req, res, next) {
         isbn: isbn,
         title: title,
         price: price,
-        active: active,
         editorial: editorial,
         stock: stock
       }
@@ -55,8 +69,26 @@ async function updateBook(req, res, next) {
   } catch (error) {}
 }
 
+async function deleteBook(req, res, next) {
+  try {
+    const {id}= req.params
+    const book = await prisma.book.update({
+      where: {id},
+      data: {active:false}
+    })
+    res.status(200).json(book)
+  } catch (error) {
+    res.status(500).send({
+      message: 'Ocurrio un error'
+    })
+    next(error)
+  }
+}
+
 module.exports = {
   add,
+  getBooks,
   getBook,
-  updateBook
+  updateBook,
+  deleteBook
 }
