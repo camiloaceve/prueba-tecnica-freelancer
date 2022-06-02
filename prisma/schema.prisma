@@ -29,11 +29,21 @@ model Profile {
 }
 
 model Book {
-  id        String  @id @default(uuid())
+  id        String   @id @default(uuid())
   isbn      String
   title     String
   price     Int
-  active    Boolean @default(true)
+  active    Boolean  @default(true)
   editorial String
   stock     Int
+  entry     Entry[]
+  createdAt DateTime @default(now())
+}
+
+model Entry {
+  id        String   @id @default(uuid())
+  dealer    String
+  bookId    String?
+  book      Book?    @relation(fields: [bookId], references: [id])
+  createdAt DateTime @default(now())
 }
