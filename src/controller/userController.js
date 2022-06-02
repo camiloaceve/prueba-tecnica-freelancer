@@ -21,10 +21,7 @@ async function register(req, res, next) {
       data: {
         name: name,
         email: email,
-        password: password,
-        profile: {
-          create: {}
-        }
+        password: password
       }
     })
     res.status(200).json(user)
@@ -67,7 +64,45 @@ async function sigIn(req, res, next) {
   }
 }
 
+/*
+Profile
+*/
+async function profile(req, res, next) {
+  try {
+    const { address, photo, userId } = req.body
+    const profile = await prisma.profile.create({
+      data: {
+        address: address,
+        userId: userId
+      }
+    })
+    res.status(200).json(profile)
+  } catch (error) {
+    res.status(500).send({
+      message: 'Ocurrio un error'
+    })
+    next(error)
+  }
+}
+
+async function updateProfile(req, res, next) {
+  try {
+    const profile = await prisma.profile.update({
+      where: { id },
+      data: { address: req.body.address }
+    })
+    res.json(profile)
+  } catch (error) {
+    res.status(500).send({
+      message: 'Ocurrio un error'
+    })
+    next(error)
+  }
+}
+
 module.exports = {
   register,
-  sigIn
+  sigIn,
+  profile,
+  updateProfile
 }
