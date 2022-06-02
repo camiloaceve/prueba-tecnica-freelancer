@@ -10,7 +10,7 @@ configure .env
 
 ## Run localhost:
 
-npm run dev
+###### npm run dev
 
 ## Endpoints
 
