@@ -1,40 +1,41 @@
 {
-  "name": "prueba-tecnica-back",
-  "version": "1.0.0",
-  "description": "prueba backend engineer",
-  "main": "index.js",
-  "dependencies": {
-    "@prisma/client": "^3.14.0",
-    "bcrypt": "^5.0.1",
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.1",
-    "express": "^4.18.1",
-    "jsonwebtoken": "^8.5.1"
-  },
-  "devDependencies": {
-    "eslint": "^8.16.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-config-standard": "^17.0.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^6.0.0",
-    "jest": "^28.1.0",
-    "morgan": "^1.10.0",
-    "nodemon": "^2.0.16",
-    "prettier": "^2.6.2",
-    "prisma": "^3.14.0"
-  },
-  "scripts": {
-    "dev": "nodemon src/index.js",
-    "start": "node src/index.js",
-    "test": "jest",
-    "format": "prettier --write .",
-    "lint": "eslint --fix . --ext .js,.jsx"
-  },
-  "repository": {
-    "type": "git",
-    "url": "camiloaceve"
-  },
-  "author": "Camilo Acvedo",
-  "license": "ISC"
+	"name": "prueba-tecnica-back",
+	"version": "1.0.0",
+	"description": "prueba backend engineer",
+	"main": "index.js",
+	"dependencies": {
+		"@prisma/client": "^3.14.0",
+		"bcrypt": "^5.0.1",
+		"cors": "^2.8.5",
+		"dotenv": "^16.0.1",
+		"express": "^4.18.1",
+		"jsonwebtoken": "^8.5.1"
+	},
+	"devDependencies": {
+		"eslint": "^8.16.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-config-standard": "^17.0.0",
+		"eslint-plugin-import": "^2.26.0",
+		"eslint-plugin-node": "^11.1.0",
+		"eslint-plugin-promise": "^6.0.0",
+		"jest": "^28.1.0",
+		"morgan": "^1.10.0",
+		"nodemon": "^2.0.16",
+		"prettier": "^2.6.2",
+		"prisma": "^3.14.0",
+		"supertest": "^6.2.3"
+	},
+	"scripts": {
+		"dev": "nodemon src/index.js",
+		"start": "node src/index.js",
+		"test": "set NODE_OPTIONS=--experimental-vm-modules npx jest",
+		"format": "prettier --write .",
+		"lint": "eslint --fix . --ext .js,.jsx"
+	},
+	"repository": {
+		"type": "git",
+		"url": "camiloaceve"
+	},
+	"author": "Camilo Acvedo",
+	"license": "ISC"
 }
